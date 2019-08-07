@@ -1,4 +1,5 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { css } from "@emotion/core";
+import styled from "@emotion/styled";
 
 const theme = {
   main: "white",
@@ -10,8 +11,8 @@ const theme = {
   border: "rgb(228, 231, 231)"
 };
 
-const GlobalStyle = createGlobalStyle`
-  body{
+const GlobalStyle = css`
+  body {
     font-family: arial;
     text-align: center;
   }
@@ -22,12 +23,8 @@ const CalendarStyled = styled.div`
   margin: 100px auto;
 `;
 
-type ButtonNavStyledProps = {
-  float?: string;
-};
-
 const ButtonNavStyled = styled.button`
-  float: ${(props: ButtonNavStyledProps) => props.float || "left"};
+  float: ${props => props.float || "left"};
   background: none;
   border: 1px solid lightgray;
   padding: 10px;
@@ -49,7 +46,7 @@ const ContentStyled = styled.div`
 `;
 
 const CellDayWeek = styled.div`
-  color: ${props => props.theme.date};
+  color: ${theme.date};
   display: flex;
   overflow: hidden;
   align-items: center;
@@ -61,29 +58,13 @@ const CellDayWeek = styled.div`
   }
 `;
 
-type CellStyledProps = {
-  selected: boolean;
-  selectedTemp: boolean;
-  disabled: boolean;
-  theme: {
-    date: string;
-    disabled: string;
-    selected: string;
-    selectedTemp: string;
-    hover: string;
-    main: string;
-    border: string;
-  };
-};
-
 const CellStyled = styled.div`
-  background: ${(props: CellStyledProps) =>
-    (props.selected && props.theme.selected) ||
-    (props.selectedTemp && props.theme.selectedTemp) ||
-    props.theme.main};
-  color: ${(props: CellStyledProps) =>
-    (props.disabled && props.theme.disabled) || props.theme.date};
-  outline: 1px solid ${(props: CellStyledProps) => props.theme.border};
+  background: ${props =>
+    (props.selected && theme.selected) ||
+    (props.selectedTemp && theme.selectedTemp) ||
+    theme.main};
+  color: ${props => (props.disabled && theme.disabled) || theme.date};
+  outline: 1px solid ${theme.border};
   display: flex;
   cursor: pointer;
   overflow: hidden;
@@ -96,13 +77,11 @@ const CellStyled = styled.div`
   }
 
   :hover {
-    background: ${(props: CellStyledProps) =>
-      !props.selected && props.theme.hover};
+    background: ${props => !props.selected && theme.hover};
   }
 `;
 
 export {
-  theme,
   GlobalStyle,
   CalendarStyled,
   ButtonNavStyled,
