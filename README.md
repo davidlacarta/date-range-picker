@@ -1,8 +1,6 @@
 # Simple date range picker
 
-To play with React, Styled Components and Flexbox.
-
-https://codesandbox.io/s/github/davidlacarta/date-range-picker
+Simple date range picker.
 
 ## Libraries
 
@@ -10,6 +8,6 @@ https://codesandbox.io/s/github/davidlacarta/date-range-picker
 - react-dom
 - react-scripts
 - dayjs
-- styled-components
+- emotion
 
 ![date_range_picker](./date_range_picker.png)
