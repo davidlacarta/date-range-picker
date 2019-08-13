@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
-import { ThemeProvider } from "styled-components";
+import { Global } from "@emotion/core";
 import {
   CalendarStyled,
   GlobalStyle,
@@ -8,19 +8,16 @@ import {
   CellDayWeek,
   CellStyled,
   ButtonNavStyled,
-  MonthStyled,
-  theme
-} from "./Calendar.styled";
+  MonthStyled
+} from "./styles";
 
-const DAYS_OF_WEEK: any = ["Mo", "Tu", "Wd", "Th", "Fr", "Sa", "Su"];
+const DAYS_OF_WEEK = ["Mo", "Tu", "Wd", "Th", "Fr", "Sa", "Su"];
 
-function CalendarInner() {
-  const [firstDayMonth, setFirstDayMonth]: any = useState(
-    dayjs().startOf("month")
-  );
-  const [startDay, setStartDay]: any = useState(null);
-  const [endDay, setEndDay]: any = useState(null);
-  const [endSelectedDay, setEndSelectedDay]: any = useState(null);
+function Calendar() {
+  const [firstDayMonth, setFirstDayMonth] = useState(dayjs().startOf("month"));
+  const [startDay, setStartDay] = useState(null);
+  const [endDay, setEndDay] = useState(null);
+  const [endSelectedDay, setEndSelectedDay] = useState(null);
 
   function nextMonth() {
     setFirstDayMonth(firstDayMonth.add(1, "month"));
@@ -62,7 +59,7 @@ function CalendarInner() {
 
   return (
     <CalendarStyled>
-      <GlobalStyle />
+      <Global styles={GlobalStyle} />
       <Head
         firstDayMonth={firstDayMonth}
         nextMonth={nextMonth}
@@ -118,14 +115,6 @@ function daysMonthPlusAdjacent(firstDayMonth) {
   return Array(42)
     .fill(firstDayRowCalendar)
     .map((firstDayRowCalendar, index) => firstDayRowCalendar.add(index, "day"));
-}
-
-function Calendar() {
-  return (
-    <ThemeProvider theme={theme}>
-      <CalendarInner />
-    </ThemeProvider>
-  );
 }
 
 export default Calendar;
